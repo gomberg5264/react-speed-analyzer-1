@@ -1,15 +1,15 @@
- {
-  "schemaVersion": 2,
-  "dockerfileLines": [
-                        "FROM node:8.7.0-alpine",
-                        "RUN mkdir -p /usr/src/app",
-                        "WORKDIR /usr/src/app",
-                        "COPY ./package.json /usr/src/app/",
-                        "RUN npm install && npm cache clean --force",
-                        "COPY ./ /usr/src/app",
-                        "ENV NODE_ENV production",
-                        "ENV PORT 80",
-                        "EXPOSE 80",
-                        "CMD [ \"npm\", \"start\" ]"
-                    ]
- }
+FROM node:12.2
+
+ENV HOME=/home/app
+
+RUN apt-get update && apt-get install htop
+
+COPY package.json package-lock.json $HOME/node_docker/
+
+WORKDIR $HOME/node_docker
+
+RUN npm install --silent --progress=false
+
+COPY . $HOME/node_docker
+
+CMD ["npm", "start"]
