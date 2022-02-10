@@ -1,4 +1,4 @@
  {
   "schemaVersion": 2,
-  "imageName": "node:lts-stretch-slim"
+  "dockerfilePath": "./Dockerfile"
  }
