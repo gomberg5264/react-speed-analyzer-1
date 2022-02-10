@@ -1,5 +1,6 @@
 FROM node:12.2
 
+
 ENV HOME=/home/app
 
 RUN apt-get update && apt-get install htop
@@ -13,3 +14,5 @@ RUN npm install --silent --progress=false
 COPY . $HOME/node_docker
 
 CMD ["npm", "start"]
+
+EXPOSE $EXPOSE_PORT
